@@ -1,0 +1,66 @@
+namespace WpfApp1
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void szamitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var kapacitas = Convert.ToDouble(kapacitasTb.Text);
+            var atvivendo = Math.Round(atvivendoSli.Value);
+            var kapacitasMertek = kapacitasCb.SelectedIndex;
+            var atvivendoMertek = atvivendoCb.SelectedIndex;
+
+            if (kapacitasMertek == atvivendoMertek) {
+                var atviteliIdo = kapacitas / atvivendo;
+                idoLb.Content = Math.Round(atviteliIdo, 10);
+            }
+            else if (kapacitasMertek == 0)
+            {
+                if (atvivendoMertek == 1)
+                {
+                    var atvivteliIdo = kapacitas / (1000 * atvivendo);
+                    idoLb.Content = Math.Round(atvivteliIdo, 10);
+                }
+                else if (atvivendoMertek == 2)
+                {
+                    var atvivteliIdo = kapacitas / (1000 * (1000 * atvivendo));
+                    idoLb.Content = Math.Round(atvivteliIdo, 10);
+                }
+            }
+            else if (kapacitasMertek == 1)
+            {
+                if (atvivendoMertek == 0)
+                {
+                    var atvivteliIdo = (1000 * kapacitas) /atvivendo;
+                    idoLb.Content = Math.Round(atvivteliIdo, 10);
+                }
+                else if (atvivendoMertek == 2)
+                {
+                    var atvivteliIdo = kapacitas / (1000 * atvivendo);
+                    idoLb.Content = Math.Round(atvivteliIdo, 10);
+                }
+            }
+            else if (kapacitasMertek == 2)
+            {
+                if (atvivendoMertek == 0)
+                {
+                    var atvivteliIdo = (1024 * (1000 * kapacitas)) / atvivendo;
+                    idoLb.Content = Math.Round(atvivteliIdo, 10);
+                }
+                else if (atvivendoMertek == 1)
+                {
+                    var atvivteliIdo = (1000 * kapacitas) / atvivendo;
+                    idoLb.Content = Math.Round(atvivteliIdo, 10);
+                }
+            }
+            
+        }
+    }
+}
